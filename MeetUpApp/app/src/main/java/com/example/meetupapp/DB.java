@@ -7,10 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 public class DB extends SQLiteOpenHelper {
-    private static final String TAG = "MyActivity";
     private static final String DB_name = "Meetup";
     private static final String table_name = "Meeting";
     public DB(Context context) {
@@ -21,21 +19,21 @@ public class DB extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase DB) {
         DB.execSQL("CREATE TABLE " + table_name +
                 "(MeetingID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " Name TEXT(100) NOT NULL," +
-                " Description TEXT(100) NOT NULL," +
-                " Dates date NOT NULL," +
-                " Amount INTEGER NOT NULL," +
-                " Category TEXT(20) NOT NULL," +
-                " Location TEXT(100) NOT NULL);");
+                " Name TEXT(100)," +
+                " Description TEXT(100)," +
+                " Times time," +
+                " Dates date," +
+                " Amount INTEGER," +
+                " Category TEXT(20)," +
+                " Location TEXT(100));");
 
-                Log.d(TAG, "Create Database");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase DB, int oldVersion, int newVersion) {
     }
 
-    public long Insert_Data(String name, String description, String date,String amount,String spin, String lo) {
+    public long Insert_Data(String name, String description, String time, String date,String amount,String spin, String lo) {
         // TODO Auto-generated method stub
 
         try {
@@ -45,6 +43,7 @@ public class DB extends SQLiteOpenHelper {
             ContentValues Val = new ContentValues();
             Val.put("Name", name);
             Val.put("Description", description);
+            Val.put("Times", time);
             Val.put("Dates", date);
             Val.put("Amount", amount);
             Val.put("Category", spin);

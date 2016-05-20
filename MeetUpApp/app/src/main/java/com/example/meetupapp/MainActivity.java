@@ -17,10 +17,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       // final DB myDb = new DB(this);
-       // myDb.getWritableDatabase();
         List<Data> data = fill_with_data();
-
+        myDb.getWritableDatabase();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         Recycler_View_Adapter adapter = new Recycler_View_Adapter(data, getApplication());
         recyclerView.setAdapter(adapter);
@@ -28,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void CreateMeeting(View view)
     {
-        Intent itn = new Intent(this,CreateMeeting.class);
-        startActivity(itn);
+      //  Intent itn = new Intent(this,CreateMeeting.class);
+       // startActivity(itn);
     }
     public List<Data> fill_with_data() {
 
@@ -45,8 +43,7 @@ public class MainActivity extends AppCompatActivity {
         {
             int i = 0;
             for(i = 0;i<=arrData.length-1;i++) {
-                //System.out.println(arrData[i][7]);
-                data.add(new Data(arrData[i][1], arrData[i][2], R.drawable.balloons,arrData[i][6]));
+                data.add(new Data(arrData[i][1], arrData[i][6], R.drawable.balloons,arrData[i][7]));
             }
         }
 

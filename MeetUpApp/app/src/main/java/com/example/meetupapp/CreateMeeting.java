@@ -25,8 +25,8 @@ public class CreateMeeting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meeting);
 
-       
-      
+        //  EditText txtDate = (EditText)findViewById(R.id.editText5);
+        //   EditText txtTime = (EditText)findViewById(R.id.editText3);
 
         Spinner staticSpinner = (Spinner) findViewById(R.id.spinner);
 
@@ -44,7 +44,25 @@ public class CreateMeeting extends AppCompatActivity {
 
 
     }
+    public void Select_time(View v) {
+        final EditText txtTime = (EditText)findViewById(R.id.editText3);
+        final Calendar c = Calendar.getInstance();
+        mHour = c.get(Calendar.HOUR_OF_DAY);
+        mMinute = c.get(Calendar.MINUTE);
 
+        // Launch Time Picker Dialog
+        TimePickerDialog tpd = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+                        // Display Selected time in textbox
+                        txtTime.setText(hourOfDay + ":" + minute);
+                    }
+                }, mHour, mMinute, false);
+        tpd.show();
+    }
     public void Select_Date(View view)
     {
         final EditText txtDate = (EditText)findViewById(R.id.editText6);
@@ -73,6 +91,7 @@ public class CreateMeeting extends AppCompatActivity {
     {
         EditText meet_name = (EditText)findViewById(R.id.editText);
         EditText description = (EditText)findViewById(R.id.editText2);
+        EditText time = (EditText)findViewById(R.id.editText3);
         EditText date = (EditText)findViewById(R.id.editText6);
         EditText amount = (EditText)findViewById(R.id.editText4);
         Spinner spin = (Spinner)findViewById(R.id.spinner);
@@ -80,37 +99,25 @@ public class CreateMeeting extends AppCompatActivity {
 
         String m_n = meet_name.getText().toString();
         String des = description.getText().toString();
+        String ti = time.getText().toString();
         String da = date.getText().toString();
         String am = amount.getText().toString();
         String sp = spin.getSelectedItem().toString();
         String locate = locations.getText().toString();
 
-
-        if(m_n.isEmpty() || des.isEmpty() || da.isEmpty() || am.isEmpty() ||  locate.isEmpty() ){
-            Toast.makeText(CreateMeeting.this,"Insert Data Failed.",
-                    Toast.LENGTH_LONG).show();
-        }
-        else if(Integer.parseInt(am)>100)
-        {
-            Toast.makeText(CreateMeeting.this,"Insert Data Failed.",
-                    Toast.LENGTH_LONG).show();
-        }
-        else{
         // Statement 1
-        long flg1 = myDb.Insert_Data(m_n,des,da,am,sp,locate);
+        long flg1 = myDb.Insert_Data(m_n,des,ti,da,am,sp,locate);
         if(flg1 > 0)
         {
-            Toast.makeText(CreateMeeting.this, "Insert Data Successfully",
+            Toast.makeText(CreateMeeting.this, "Insert(1) Data Successfully",
                     Toast.LENGTH_LONG).show();
         }
         else
         {
-            Toast.makeText(CreateMeeting.this,"Insert Data Failed.",
+            Toast.makeText(CreateMeeting.this,"Insert(1) Data Failed.",
                     Toast.LENGTH_LONG).show();
         }
         Intent itn = new Intent(this,MainActivity.class);
         startActivity(itn);
-        }
     }
-
 }
