@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MeetUpApp</string>
+
+    <string-array name="category">
+        <item>Sport</item>
+        <item>Food</item>
+        <item>Party</item>
+        <item>IT</item>
+        <item>Travel</item>
+        <item>Charity</item>
+        <item>Education</item>
+    </string-array>
+</resources>
