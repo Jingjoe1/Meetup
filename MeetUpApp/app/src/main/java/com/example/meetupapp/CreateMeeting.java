@@ -26,8 +26,6 @@ public class CreateMeeting extends AppCompatActivity {
         setContentView(R.layout.activity_create_meeting);
 
        
-      
-
         Spinner staticSpinner = (Spinner) findViewById(R.id.spinner);
 
         // Create an ArrayAdapter using the string array and a default spinner
