@@ -26,7 +26,7 @@ public class CreateMeeting extends AppCompatActivity {
         setContentView(R.layout.activity_create_meeting);
 
        
-        //   EditText txtTime = (EditText)findViewById(R.id.editText3);
+      
 
         Spinner staticSpinner = (Spinner) findViewById(R.id.spinner);
 
